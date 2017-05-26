@@ -1,10 +1,10 @@
-command: "curl -s http://www.coincap.io/front | /usr/local/bin/jq '.[1].price' | /usr/bin/sed 's/\"//' | cut -c 1-6"
+command: "/usr/bin/curl -s https://ethereumprice.org/wp-content/themes/theme/inc/exchanges/price-data.php?coin=eth&cur=ethusd&ex=waex&dec=2"
 
-refreshFrequency: 10000 #ms
+refreshFrequency: 60000 #ms
 
 style: """
   bottom: 10px
-  left: 10px
+  left: 20px
   color: #fff
   font-family: Helvetica Neue
 
@@ -22,24 +22,29 @@ style: """
   td
     font-size: 24px
     font-weight: 100
-    max-width: 200px
     overflow: hidden
     text-shadow: 0 0 1px rgba(#000, 0.5)
     padding-left:5px
 
-  .wrapper
-    padding: 4px 6px 4px 6px
-    position: relative
-
-
-
+  #change
+    font-size: 18px
 
 """
+
+
+update: (output, domEl) ->
+  data  = JSON.parse(output)
+  price = data.current_price
+  change = data.percent_change
+  $domEl = $(domEl)
+
+  $domEl.find('#price').text price
+  $domEl.find('#change').text '('+change+'%)'
 
 render: (o) -> """
   <table>
     <tr>
-      <td class='col1'>$ #{o}</td>
+      <td>$<span id='price'></span> <span id='change'></span></td>
     </tr>
   </table>
 """
