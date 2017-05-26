@@ -24,7 +24,6 @@ style: """
     font-weight: 100
     overflow: hidden
     text-shadow: 0 0 1px rgba(#000, 0.5)
-    padding-left:5px
 
   #change
     font-size: 18px
