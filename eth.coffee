@@ -11,6 +11,8 @@ style: """
   table
     border-collapse: collapse
     table-layout: fixed
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
 
     &:after
       content: 'Ethereum'
@@ -21,7 +23,7 @@ style: """
 
   td
     font-size: 24px
-    font-weight: 100
+    font-weight: 200
     overflow: hidden
     text-shadow: 0 0 1px rgba(#000, 0.5)
 
