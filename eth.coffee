@@ -1,4 +1,4 @@
-command: "/usr/bin/curl -s https://ethereumprice.org/wp-content/themes/theme/inc/exchanges/price-data.php?coin=eth&cur=ethusd&ex=waex&dec=2"
+command: "/usr/bin/curl -s https://v2.ethereumprice.org:8080/snapshot/eth/usd/waex/24h"
 
 refreshFrequency: 60000 #ms
 
@@ -34,9 +34,9 @@ style: """
 
 
 update: (output, domEl) ->
-  data  = JSON.parse(output)
-  price = data.current_price
-  change = data.percent_change
+  res  = JSON.parse(output)
+  price = res.data.price
+  change = res.data.percent_change
   $domEl = $(domEl)
 
   $domEl.find('#price').text price
